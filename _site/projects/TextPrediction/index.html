@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <title>Najla Alariefy | Next Word Prediction</title>
+  <meta name="description" content="Personal site. Based on [*folio](https://github.com/bogoli/-folio) design.
+">
+
+  <link rel="shortcut icon" href="http://localhost:4000/najla/assets/img/favicon.ico">
+
+  <link rel="stylesheet" href="http://localhost:4000/najla/assets/css/main.css">
+  <link rel="canonical" href="http://localhost:4000/najla/projects/TextPrediction/">
+</head>
+
+
+  <body>
+
+    <header class="site-header">
+
+  <div class="wrapper">
+
+    
+    <span class="site-title">
+        
+        <strong>Najla</strong> Alariefy
+    </span>
+    
+
+    <nav class="site-nav">
+      <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+              <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+              <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+      <div class="trigger">
+        <!-- About -->
+        <a class="page-link" href="http://localhost:4000/najla/">about</a>
+
+        <!-- Blog -->
+        <a class="page-link" href="http://localhost:4000/najla/blog/">blog</a>
+
+        <!-- Pages -->
+        
+          
+        
+          
+        
+          
+        
+          
+            <a class="page-link" href="http://localhost:4000/najla/projects/">projects</a>
+          
+        
+          
+        
+
+        <!-- CV link -->
+        <!-- <a class="page-link" href="http://localhost:4000/najla/assets/pdf/CV.pdf">vitae</a> -->
+
+      </div>
+    </nav>
+
+  </div>
+
+</header>
+
+
+
+    <div class="page-content">
+      <div class="wrapper">
+        <div class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">Next Word Prediction</h1>
+    <h5 class="post-description">ShinyR App for Text Prediction using Swiftkey's Data</h5>
+  </header>
+
+  <article class="post-content Next Word Prediction clearfix">
+    <h3 id="executive-summary">Executive Summary</h3>
+<p>This app is a text-prediction ShinyApp that will predict the 3 most likely words the user would likely write next. This report will explore and summarize the data properties of the US blogs, twitter and news text datasets, before reporting the n-gram (n-grams are a series of associated tokens) HMM model for predicting the next word based on the previous 1, 2, or 3 words.</p>
+
+<p>Access the app via: <a href="https://najla.shinyapps.io/YourNextWord/">https://najla.shinyapps.io/YourNextWord/ 
+</a>.</p>
+
+<h3 id="data-summary-and-profiling">Data Summary and Profiling</h3>
+
+<p>Confining the context is important for shaping text-prediction algorithms. For instance, a person writing a business letter will use different words from a person who is tweeting or blogging. So for the perseverance of the dataset contexts, the prediction algorithms will run seperately on all three of the provided datasets.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Context</th>
+      <th># of lines</th>
+      <th># of words</th>
+      <th>Average words per line</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Twitter</td>
+      <td>2360148</td>
+      <td>30451170</td>
+      <td>12.902229</td>
+    </tr>
+    <tr>
+      <td>News</td>
+      <td>1010242</td>
+      <td>34494539</td>
+      <td>41.778428</td>
+    </tr>
+    <tr>
+      <td>Blogs</td>
+      <td>899288</td>
+      <td>37570839</td>
+      <td>34.1448277</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="data-exploration">Data Exploration</h3>
+<p>As part of understanding word associations &amp; building a proper N-Gram model, a tool has been made to display lists of word following a certain token. The following word cloud shows the most probable 1000 words that might come after the word <em>The</em>:</p>
+
+<div>
+<img style="width:100%;   " src="/najla/assets/img/1.jpg" alt="Top 1000 words after 'The' " title="Top 1000 words after 'The' " />
+</div>
+
+<h3 id="preprocessing--cleaning-decisions">Preprocessing &amp; Cleaning Decisions</h3>
+<p>All three datasets need cleaning to varying degrees; Twitter contains teh most amount of noise due to its informal nature. Cleaning the data will enable the text prediction to return sounder results. The following preprocessing decisions have been used:</p>
+
+<ul>
+  <li>Merged words (Haven’t, Would’ve …etc) have been seperated to refine the results.</li>
+  <li>Profane words have been removed using a dataset of 700 words.</li>
+  <li>Punctuation marks and special symbols have been all removed. There is a plethora of smiley emoticons that have interferred between words.</li>
+</ul>
+
+<h3 id="sampling-decisions">Sampling Decisions</h3>
+<p>Due to extremely restricted resources (4GB memory, low processor speed), it is deemed fit to sample a random 2% of each of the populations, with guaranteed reproducible results. Sample sizes (number of lines) are as follows:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Context</th>
+      <th>Sample Size</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Twitter</td>
+      <td>47202</td>
+    </tr>
+    <tr>
+      <td>Blogs</td>
+      <td>17985</td>
+    </tr>
+    <tr>
+      <td>News</td>
+      <td>20204</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Words occuring more than 1000 times in the <strong>Twitter</strong> sample:<br />
+<code class="highlighter-rouge">Most.Frequent.Words</code> <br />
+<code class="highlighter-rouge">the  you  and  for  not that have  are with your this just will what</code><br />
+<code class="highlighter-rouge">9322 6033 4380 3807 3395 2673 2200 2185 1727 1715 1641 1537 1467 1268</code>.</p>
+
+<div>
+<img style="width:100%;   " src="/najla/assets/img/2.jpg" alt="Twitter Top Terms by Occurence" title="Twitter Top Terms by Occurence" />
+</div>
+
+<p>Words occuring more than 1000 times in the <strong>News</strong> sample:</p>
+
+<p><code class="highlighter-rouge">Most.Frequent.Words</code> <br />
+<code class="highlighter-rouge">The   In  But    A   It   He    I   As  And That</code>  <br />
+<code class="highlighter-rouge">1183  252  210  168  127  121   92   86   80   77</code></p>
+
+<p>Words occuring more than 1000 times in the <strong>Blogs</strong> sample:</p>
+
+<p><code class="highlighter-rouge">Most.Frequent.Words</code> <br />
+<code class="highlighter-rouge">I  The   It This   So  And   We   In    A   As</code><br />
+<code class="highlighter-rouge">811  607  179  170  165  163  150  132  115  111</code></p>
+
+
+  </article>
+<!--
+
+  
+-->
+
+  
+
+</div>
+
+      </div>
+    </div>
+
+    <footer>
+
+  <div class="wrapper">
+    &copy; Copyright 2018 Najla Alariefy.
+    Powered by <a href="http://jekyllrb.com/" target="_blank">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio">al-folio</a> theme. Hosted by <a href="https://pages.github.com/" target="_blank">GitHub Pages</a>.
+
+    
+  </div>
+
+</footer>
+
+
+    <!-- Load jQuery -->
+<script src="//code.jquery.com/jquery-1.12.4.min.js"></script>
+
+<!-- Load Common JS -->
+<script src="http://localhost:4000/najla/assets/js/common.js"></script>
+
+
+<!-- Load KaTeX -->
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.js"></script>
+<script src="http://localhost:4000/najla/assets/js/katex.js"></script>
+
+
+
+
+<!-- Include custom icon fonts -->
+<link rel="stylesheet" href="http://localhost:4000/najla/assets/css/fontawesome-all.min.css">
+<link rel="stylesheet" href="http://localhost:4000/najla/assets/css/academicons.min.css">
+
+<!-- Google Analytics -->
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-XXXXXXXXX', 'auto');
+ga('send', 'pageview');
+</script>
+
+
+  </body>
+
+</html>

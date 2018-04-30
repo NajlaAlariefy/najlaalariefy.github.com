@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <title>Najla Alariefy | Detecting the Shine-Dalgarno Sequence</title>
+  <meta name="description" content="Personal site. Based on [*folio](https://github.com/bogoli/-folio) design.
+">
+
+  <link rel="shortcut icon" href="http://localhost:4000/najla/assets/img/favicon.ico">
+
+  <link rel="stylesheet" href="http://localhost:4000/najla/assets/css/main.css">
+  <link rel="canonical" href="http://localhost:4000/najla/projects/ShineDalgarno/">
+</head>
+
+
+  <body>
+
+    <header class="site-header">
+
+  <div class="wrapper">
+
+    
+    <span class="site-title">
+        
+        <strong>Najla</strong> Alariefy
+    </span>
+    
+
+    <nav class="site-nav">
+      <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+              <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+              <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+      <div class="trigger">
+        <!-- About -->
+        <a class="page-link" href="http://localhost:4000/najla/">about</a>
+
+        <!-- Blog -->
+        <a class="page-link" href="http://localhost:4000/najla/blog/">blog</a>
+
+        <!-- Pages -->
+        
+          
+        
+          
+        
+          
+        
+          
+            <a class="page-link" href="http://localhost:4000/najla/projects/">projects</a>
+          
+        
+          
+        
+
+        <!-- CV link -->
+        <!-- <a class="page-link" href="http://localhost:4000/najla/assets/pdf/CV.pdf">vitae</a> -->
+
+      </div>
+    </nav>
+
+  </div>
+
+</header>
+
+
+
+    <div class="page-content">
+      <div class="wrapper">
+        <div class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">Detecting the Shine-Dalgarno Sequence</h1>
+    <h5 class="post-description">A Computational Genomics assignment</h5>
+  </header>
+
+  <article class="post-content Detecting the Shine-Dalgarno Sequence clearfix">
+    <h3 id="aim">Aim</h3>
+<p>The goal of this post is to report the results of a <strong>Hidden Markov Model (HMM)</strong> from known ribosomal binding sites in E. coli and then applying the model to (parts of) the genome to establish potential binding partners in the sequence.</p>
+
+<div>
+<img style="width:100%;   " src="/najla/assets/img/5.jpg" alt="  " title="  " />
+</div>
+
+<h4 id="1-what-does-the-transition-probabilities-sn-s1-and-sn-sn-represent-in-terms-of-our-assumptions-about-rbs-in-the-genome-how-would-changes-to-these-values-affect-the-performance-of-the-model">1. What does the transition probabilities SN-&gt;S1 and SN-&gt;SN represent in terms of our assumptions about RBS in the genome? How would changes to these values affect the performance of the model?</h4>
+<p>That we assume RBS will occur twice every 1000 nucleotides in the sequence. An increase in the transition probability between SN -&gt; S1 would increase the chance of more RBSs being detected (regardless of whether they were true or false), in other words, it would increase the number of true predictions but it will lower precision.</p>
+
+<h4 id="2-for-the-emission-probabilities-in-states-s1-s14-what-are-the-highest-observed-frequencies-can-you-discover-the-shine-delgarno-sd-sequence-in-these-probabilities-why-are-these-values-not-100-for-the-sd-components">2. For the emission probabilities in states S1-S14, what are the highest observed frequencies? Can you discover the Shine-Delgarno (SD) sequence in these probabilities? Why are these values not 100% for the SD components?</h4>
+
+<p>The emissions (rounded to the second digit) are computed as below:</p>
+
+<div>
+<img style="width:100%;   " src="/najla/assets/img/4.jpg" alt="  " title="  " />
+</div>
+
+<p>The highest observed frequencies for S1-S14 are:</p>
+
+<ul>
+  <li><strong>g :</strong> 56% in State 6</li>
+  <li><strong>g :</strong> 47% in State 5</li>
+  <li><strong>a :</strong> 42% in State 12</li>
+  <li><strong>g :</strong> 42% in State 7</li>
+  <li><strong>g :</strong> 40% in State 4</li>
+</ul>
+
+<p>The Shine-Delgarno sequence in Escherichia coli is a base of <strong>AGGAGG</strong>, and based on observation, one could say that the SD sequence is mostly around <strong>S4 - S9</strong>.</p>
+
+<p>While the SD sequence is mostly 6 consecutive nucleotides, they aren’t really exactly located 7 or 8 bp before the start codon. As seen in the histogram below (data taken from sd_table.txt ), most SDs appear around 8 bp before the transcript site yet are diversly located anywhere between 18 to 4 bp prior. So that entails that the state emissions probabilities are just approximations, they don’t account for the beginninng of the SD and that’s why they’re not a 100% for all.</p>
+
+<h4 id="3-how-could-the-model-be-changed-to-model-the-sd-sequence-a-bit-more-closely-in-the-data">3. How could the model be changed to model the SD sequence a bit more closely in the data?</h4>
+<p>To begin with, the inclusion of all of the 33 states should improve the model, since a portion of start positions of SD are in that region (before the 14 selected states). 
+Moreover, emission should be factored to calculate the entropy/strength of presence of the SD based on the distances between them and the start codon (ATG). That way, the strong presence of SD in the most anticipated regions/states will be “magnified” through the emission rates.</p>
+
+<div>
+<img style="width:100%;   " src="/najla/assets/img/6.jpg" alt="  " title="  " />
+</div>
+
+<h2 id="dynamic-programming">Dynamic Programming</h2>
+<h4 id="displaying-model-as-a-bed-file">Displaying Model as a BED File</h4>
+<p>Using a python script that converts the Viterbi solution to a BED file, displaying through IGV (with the loading of the E. coli K-12 genome). We inspect the sites of the predicted RBSs in IGV.</p>
+
+<h4 id="whats-true-and-whats-false">What’s true and what’s false?</h4>
+<p>It would be difficult to discern with confidence, however, here are a few analysed results:</p>
+
+<div>
+<img style="width:100%;   " src="/najla/assets/img/5.jpg" alt=" True Binding Site " title=" True Binding Site " />
+</div>
+
+<p>As the sequence AGGAGG is 83% present starting on the second state, one could say it’s a true binding site.</p>
+
+<div>
+<img style="width:100%;   " src="/najla/assets/img/5.jpg" alt=" False Binding Site " title=" False Binding Site " />
+</div>
+
+<p>This could be highly perceived as a false BDS, the reason being that the emission rates reflected are not accurate, hence the site suited the model because the states had nucleotides that relfected the not-so-accurate emission rates (i.e. State 13 had a high rate for T (33%), states 9-12 also hold high percentages for A, hence, the site (falsely) looked probable to the model).</p>
+
+<h4 id="2-use-bedtools-to-establish-the-closest-transcription-start-site-tss-to-each-predicted-rbs-eg-closestbed-d-b-a-rbsbed-b-ecoli_tssbed-summarise-the-resulting-distance-distribution-a-histogram-or-density-plot-might-do-well-here-the-distance-is-reported-in-the-last-column-of-the-output-argue-how-you-would-rate-the-overall-results-coming-from-the-hmm">2. Use Bedtools to establish the closest transcription start site TSS to each predicted RBS (e.g. closestBed –D b –a rbs.bed –b ecoli_tss.bed). Summarise the resulting distance distribution (a histogram or density plot might do well here). The distance is reported in the last column of the output. Argue how you would rate the overall results coming from the HMM:</h4>
+
+<p>The overall results aren’t satisfactory (low precision and low recall) and the model need improvement.</p>
+
+<h5 id="false-positive-rate">False positive rate</h5>
+
+<p>```{r echo=FALSE}
+num &lt;- which(distance[,13] != 0)</p>
+
+<p>frate &lt;- length(num)/dim(distance)[1]
+```</p>
+
+<p>The false positive rate is the number of times an SD has been predicted incorrectly. It can be calculated as follows:<br />
+<strong>(number of times the distance is not 0) / (number of SD predictions) = <code class="highlighter-rouge">r length(num)</code> / 270 =  <code class="highlighter-rouge">r frate</code></strong></p>
+
+<h5 id="false-positives">False positives</h5>
+<p>The mapping of the emission rates to the states as mentioned does not take into consideration the varying start positions of the SD sequence. So the emission rates are detecting variant sequences that resemble the Shine Dalgarno sequence partially, or even remotely if the other states that don’t encapsulate the SD nucleotides affect the result.</p>
+
+<h3 id="reducing-false-rbs-predictions">Reducing false RBS predictions</h3>
+<p>By improving the model in such a way that would account the detection for the actual SD position within the binding site. Assuming the actual emissions of the SD have been adjusted within the state emission rates (as illustrated in Question 2 yet without rounding, since some true values are lost that way), the state transition probability matrix can then be adjusted in such a way that would allow for transitions between the normal state and all the states, with high transition probability for states that hold a high probability of the SD start positions (i.e. based on figure 1, S6 (9 bp before the start codon S15) is the most likely state where the SD begins (if we take all 33 States, that would be equivalent to S23)).</p>
+
+
+  </article>
+<!--
+
+  
+-->
+
+  
+
+</div>
+
+      </div>
+    </div>
+
+    <footer>
+
+  <div class="wrapper">
+    &copy; Copyright 2018 Najla Alariefy.
+    Powered by <a href="http://jekyllrb.com/" target="_blank">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio">al-folio</a> theme. Hosted by <a href="https://pages.github.com/" target="_blank">GitHub Pages</a>.
+
+    
+  </div>
+
+</footer>
+
+
+    <!-- Load jQuery -->
+<script src="//code.jquery.com/jquery-1.12.4.min.js"></script>
+
+<!-- Load Common JS -->
+<script src="http://localhost:4000/najla/assets/js/common.js"></script>
+
+
+<!-- Load KaTeX -->
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.js"></script>
+<script src="http://localhost:4000/najla/assets/js/katex.js"></script>
+
+
+
+
+<!-- Include custom icon fonts -->
+<link rel="stylesheet" href="http://localhost:4000/najla/assets/css/fontawesome-all.min.css">
+<link rel="stylesheet" href="http://localhost:4000/najla/assets/css/academicons.min.css">
+
+<!-- Google Analytics -->
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-XXXXXXXXX', 'auto');
+ga('send', 'pageview');
+</script>
+
+
+  </body>
+
+</html>
