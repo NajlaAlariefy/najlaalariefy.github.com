@@ -1,0 +1,58 @@
+.project {
+    box-sizing: border-box;
+    float: left;
+    height: 450px;
+    padding: 10px;
+    vertical-align: middle;
+    width: 33.33%;
+
+    .thumbnail {
+       
+        height: 400px;
+        width: 100%;
+
+        img {
+            height: auto;
+            position: absolute;
+            bottom: 0;
+            width: 200px;
+            opacity: 0.2
+        }
+
+        a {
+            float: left;
+            height: 230px;
+            position: relative;
+            width: 100%;
+
+            span {
+                position: absolute;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                right: 0;
+                background: rgba(0,0,0,0.2);
+                color: $grey-color-light;
+                padding: 10px;
+                text-align: center;
+
+                h1 {
+                    color:#2698BA;
+                    font-size: 1.5rem;
+                    margin: 0;
+                }
+
+                p {
+                    font-size: 0.8rem;
+                    color: #000;
+                }
+            }
+
+            &:hover {
+                span {
+                    display: block;
+                }
+            }
+        }
+    }
+}
