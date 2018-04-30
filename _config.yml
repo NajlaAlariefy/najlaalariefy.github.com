@@ -2,15 +2,15 @@
 # Site settings
 # -----------------------------------------------------------------------------
 name: Najla Alariefy
-email: najlaalariefy@gmail.com 
+email: najlaalariefy@gmail.com
 description: > # this means to ignore newlines until "url:"
   Personal site. Based on [*folio](https://github.com/bogoli/-folio) design.
 footer_text: >
   Powered by <a href="http://jekyllrb.com/" target="_blank">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio">al-folio</a> theme.
   Hosted by <a href="https://pages.github.com/" target="_blank">GitHub Pages</a>.
 
-url:  # the base hostname & protocol for your site
-baseurl: /najla  # the subpath of your site, e.g. /blog/
+url: najlaalariefy.github.io # the base hostname & protocol for your site
+baseurl:   # the subpath of your site, e.g. /blog/
 last_updated: # leave blank if you don't want to display last updated
 
 # -----------------------------------------------------------------------------
