@@ -1,14 +1,16 @@
 ---
-layout: post
-title: The Big Picture Series — Deep Learning
+layout: post  
+title: The Big Picture Series, Deep Learning
 date: 2018-04-01 11:12:00-0400
-description: This post will constantly be updated 
----
+description: This post will constantly be updated.
+---  
+
+
 <h1 style="color:#074e67">The Big Picture Series:  Concepts & Terminologies To Begin Your DL Journey With</h1>
 
 
 <p style="text-align:center"> Heard of Deep Learning but want your big picture digest? Kickstart your intuition with these concepts.
-</p>
+</p> 
 <p style="text-align:center"> 
 Knowledge representation often clouds the intuition if not understood well. Questioning nomenclature often is a sensible approach to building solid understanding. 
 
@@ -29,6 +31,8 @@ Knowledge representation often clouds the intuition if not understood well. Ques
 
 
 #### <b style="color:#90126f"> [1] Deep Learning</b>
+ 
+
 <div style="background-color:lightgray; opacity:0.6; border-radius:7px; padding:20px;"  >
 <b style="color:#052d72">Deep:</b> Because the networks being constructed are of many layers (a simple network would comprise of 1 or 2 layers).  
 <b style="color:#052d72">Learning:</b> The networks learn the features that make the thing being studied. (e.g. learning the edge shape of a dog's ear, the roundess of its nostrils, the color scheme of its skin, etc.).

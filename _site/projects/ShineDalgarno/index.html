@@ -10,10 +10,10 @@
   <meta name="description" content="Personal site. Based on [*folio](https://github.com/bogoli/-folio) design.
 ">
 
-  <link rel="shortcut icon" href="http://localhost:4000/najla/assets/img/favicon.ico">
+  <link rel="shortcut icon" href="http://localhost:4000/assets/img/favicon.ico">
 
-  <link rel="stylesheet" href="http://localhost:4000/najla/assets/css/main.css">
-  <link rel="canonical" href="http://localhost:4000/najla/projects/ShineDalgarno/">
+  <link rel="stylesheet" href="http://localhost:4000/assets/css/main.css">
+  <link rel="canonical" href="http://localhost:4000/projects/ShineDalgarno/">
 </head>
 
 
@@ -44,10 +44,10 @@
 
       <div class="trigger">
         <!-- About -->
-        <a class="page-link" href="http://localhost:4000/najla/">about</a>
+        <a class="page-link" href="http://localhost:4000/">about</a>
 
         <!-- Blog -->
-        <a class="page-link" href="http://localhost:4000/najla/blog/">blog</a>
+        <a class="page-link" href="http://localhost:4000/blog/">blog</a>
 
         <!-- Pages -->
         
@@ -58,14 +58,14 @@
           
         
           
-            <a class="page-link" href="http://localhost:4000/najla/projects/">projects</a>
+            <a class="page-link" href="http://localhost:4000/projects/">projects</a>
           
         
           
         
 
         <!-- CV link -->
-        <!-- <a class="page-link" href="http://localhost:4000/najla/assets/pdf/CV.pdf">vitae</a> -->
+        <!-- <a class="page-link" href="http://localhost:4000/assets/pdf/CV.pdf">vitae</a> -->
 
       </div>
     </nav>
@@ -90,7 +90,7 @@
 <p>The goal of this post is to report the results of a <strong>Hidden Markov Model (HMM)</strong> from known ribosomal binding sites in E. coli and then applying the model to (parts of) the genome to establish potential binding partners in the sequence.</p>
 
 <div>
-<img style="width:100%;   " src="/najla/assets/img/5.jpg" alt="  " title="  " />
+<img style="width:100%;   " src="/assets/img/5.jpg" alt="  " title="  " />
 </div>
 
 <h4 id="1-what-does-the-transition-probabilities-sn-s1-and-sn-sn-represent-in-terms-of-our-assumptions-about-rbs-in-the-genome-how-would-changes-to-these-values-affect-the-performance-of-the-model">1. What does the transition probabilities SN-&gt;S1 and SN-&gt;SN represent in terms of our assumptions about RBS in the genome? How would changes to these values affect the performance of the model?</h4>
@@ -101,7 +101,7 @@
 <p>The emissions (rounded to the second digit) are computed as below:</p>
 
 <div>
-<img style="width:100%;   " src="/najla/assets/img/4.jpg" alt="  " title="  " />
+<img style="width:100%;   " src="/assets/img/4.jpg" alt="  " title="  " />
 </div>
 
 <p>The highest observed frequencies for S1-S14 are:</p>
@@ -123,7 +123,7 @@
 Moreover, emission should be factored to calculate the entropy/strength of presence of the SD based on the distances between them and the start codon (ATG). That way, the strong presence of SD in the most anticipated regions/states will be “magnified” through the emission rates.</p>
 
 <div>
-<img style="width:100%;   " src="/najla/assets/img/6.jpg" alt="  " title="  " />
+<img style="width:100%;   " src="/assets/img/6.jpg" alt="  " title="  " />
 </div>
 
 <h2 id="dynamic-programming">Dynamic Programming</h2>
@@ -134,13 +134,13 @@ Moreover, emission should be factored to calculate the entropy/strength of prese
 <p>It would be difficult to discern with confidence, however, here are a few analysed results:</p>
 
 <div>
-<img style="width:100%;   " src="/najla/assets/img/5.jpg" alt=" True Binding Site " title=" True Binding Site " />
+<img style="width:100%;   " src="/assets/img/5.jpg" alt=" True Binding Site " title=" True Binding Site " />
 </div>
 
 <p>As the sequence AGGAGG is 83% present starting on the second state, one could say it’s a true binding site.</p>
 
 <div>
-<img style="width:100%;   " src="/najla/assets/img/5.jpg" alt=" False Binding Site " title=" False Binding Site " />
+<img style="width:100%;   " src="/assets/img/5.jpg" alt=" False Binding Site " title=" False Binding Site " />
 </div>
 
 <p>This could be highly perceived as a false BDS, the reason being that the emission rates reflected are not accurate, hence the site suited the model because the states had nucleotides that relfected the not-so-accurate emission rates (i.e. State 13 had a high rate for T (33%), states 9-12 also hold high percentages for A, hence, the site (falsely) looked probable to the model).</p>
@@ -196,20 +196,20 @@ num &lt;- which(distance[,13] != 0)</p>
 <script src="//code.jquery.com/jquery-1.12.4.min.js"></script>
 
 <!-- Load Common JS -->
-<script src="http://localhost:4000/najla/assets/js/common.js"></script>
+<script src="http://localhost:4000/assets/js/common.js"></script>
 
 
 <!-- Load KaTeX -->
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css">
 <script src="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.js"></script>
-<script src="http://localhost:4000/najla/assets/js/katex.js"></script>
+<script src="http://localhost:4000/assets/js/katex.js"></script>
 
 
 
 
 <!-- Include custom icon fonts -->
-<link rel="stylesheet" href="http://localhost:4000/najla/assets/css/fontawesome-all.min.css">
-<link rel="stylesheet" href="http://localhost:4000/najla/assets/css/academicons.min.css">
+<link rel="stylesheet" href="http://localhost:4000/assets/css/fontawesome-all.min.css">
+<link rel="stylesheet" href="http://localhost:4000/assets/css/academicons.min.css">
 
 <!-- Google Analytics -->
 <script>
