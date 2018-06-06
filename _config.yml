@@ -4,7 +4,8 @@
 name: Najla Alariefy
 email: najlaalariefy@gmail.com
 description: > # this means to ignore newlines until "url:"
-  Personal site. Based on [*folio](https://github.com/bogoli/-folio) design.
+  About, projects & blog posts.
+
 footer_text: >
   Powered by <a href="http://jekyllrb.com/" target="_blank">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio">al-folio</a> theme.
   Hosted by <a href="https://pages.github.com/" target="_blank">GitHub Pages</a>.
